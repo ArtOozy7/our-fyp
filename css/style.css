@@ -140,7 +140,7 @@ banner
     background-color:   rgb(121, 11, 84)!important;
 }
 #banner{
-	background: url('../img/good.jpg') no-repeat fixed;
+	background: url('../img/main.jpg') no-repeat fixed;
 	background-size: cover;
 	min-height: 800px;
 	position: relative;
