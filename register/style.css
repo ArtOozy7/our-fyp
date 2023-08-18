@@ -93,7 +93,7 @@ body {
 }
 
 .pass a {
-  color: white;
+  color: black;
   text-decoration: none;
   font-family: 'Poppins', sans-serif;
 }
@@ -175,13 +175,13 @@ i span {
 
 .signup {
   font-size: 15px;
-  color: white;
+  color: black;
   font-family: 'Poppins', sans-serif;
   margin-top: 20px;
 }
 
 .signup a {
-  color: #3498db;
+  color: #005a96;
   text-decoration: none;
 }
 
