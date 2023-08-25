@@ -86,8 +86,9 @@ banner
 }
 
 .navbar-brand img {
+
     padding-top: 2px;
-    width: 120px !important;
+    width: 70px !important;
 }
 
 .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
@@ -140,7 +141,7 @@ banner
     background-color:   rgb(121, 11, 84)!important;
 }
 #banner{
-	background: url('../img/main.jpg') no-repeat fixed;
+	background: url('../img/good.jpg') no-repeat fixed;
 	background-size: cover;
 	min-height: 800px;
 	position: relative;
@@ -244,7 +245,7 @@ cta-1
 }
 td {
     border: 0px solid #ededed;
-    border-top: 1px solid 
+    border-top: 1px solid;
     padding: 6px 10px 6px 0;
 }
 .medi-info, .time-info{

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PCOS Disease Prediction Based on Symptoms</title>
+  <style>
+    /* Body background color */
+    body {
+      background-color: pink;
+    }
+
+    /* Form container styles */
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f7f7f7;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Checkbox label styles */
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    /* Checkbox styles */
+    input[type="checkbox"] {
+      transform: scale(1.2);
+    }
+
+    /* Prediction button styles */
+    button[type="submit"] {
+      display: block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    /* Prediction result styles */
+    #predictionResult {
+      margin-top: 10px;
+      font-weight: bold;
+      background-color: #e6e6e6;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="predic.js"></script>
+</head>
+<body>
+  <h1 style="text-align: center;">PCOS Disease Prediction Based on Symptoms</h1>
+
+  <div class="form-container">
+    <form id="symptomForm">
+      <label for="irregularPeriods">
+        <input type="checkbox" id="irregularPeriods" name="symptom" value="irregular periods"> Irregular periods
+      </label>
+      <label for="weightGain">
+        <input type="checkbox" id="weightGain" name="symptom" value="weight gain"> Weight gain
+      </label>
+      <label for="acne">
+        <input type="checkbox" id="acne" name="symptom" value="acne"> Acne
+      </label>
+      <label for="excessiveHairGrowth">
+        <input type="checkbox" id="excessiveHairGrowth" name="symptom" value="excessive hair growth"> Excessive hair growth
+      </label>
+      <label for="oilySkin">
+        <input type="checkbox" id="oilySkin" name="symptom" value="oily skin"> Oily skin
+      </label>
+      <label for="thinningHairLoss">
+        <input type="checkbox" id="thinningHairLoss" name="symptom" value="thinning hair or hair loss"> Thinning hair or hair loss
+      </label>
+      <label for="hairLoss">
+        <input type="checkbox" id="hairLoss" name="symptom" value="hair loss"> Hair loss
+      </label>
+      <label for="moodSwings">
+        <input type="checkbox" id="moodSwings" name="symptom" value="mood swings"> Mood swings
+      </label>
+      <label for="irritability">
+        <input type="checkbox" id="irritability" name="symptom" value="irritability"> Irritability
+      </label>
+      <!-- Add more symptom checkboxes or other input elements as needed -->
+      <button type="submit">Predict</button>
+    </form>
+
+    <div id="predictionResult"></div>
+  </div>
+  
+  <script>
+    document.getElementById('symptomForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get the selected symptoms
+      var selectedSymptoms = [];
+      var checkboxes = document.getElementsByName('symptom');
+
+      for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+          selectedSymptoms.push(checkboxes[i].value);
+        }
+      }
+
+      // Call the predictPCOS() function with the selected symptoms
+      var prediction = predictPCOS(selectedSymptoms);
+
+      // Get the predictionResult element
+      var predictionResultElement = document.getElementById('predictionResult');
+
+      // Display the prediction result
+      predictionResultElement.innerHTML = '<p>Prediction: ' + prediction.prediction + '</p><p>' + prediction.additionalInfo + '</p>';
+
+      // Create a canvas element for the chart
+      var chartCanvas = document.createElement('canvas');
+      chartCanvas.id = 'predictionChart';
+      predictionResultElement.appendChild(chartCanvas);
+
+      // Create a bar chart using Chart.js
+      var ctx = chartCanvas.getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['High', 'Medium', 'Low', 'None'],
+          datasets: [{
+            label: 'Prediction Likelihood',
+            data: [70, 20, 5, 5], // Replace with actual prediction likelihoods
+            backgroundColor: ['red', 'orange', 'yellow', 'green']
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              title: {
+                display: true,
+                text: 'Likelihood (%)'
+              }
+            }
+          }
+        }
+      });
+
+      return false; // Prevent form submission and page reload
+    });
+  </script>
+</body>
+</html>
